@@ -2,7 +2,11 @@ node_modules/
 tmp/**/*
 .DS_Store
 npm-debug.log
+yarn-error.log
 .idea/
+build/
+stats/
+coverage/
 .vscode
 package-lock.json
 dist/**/*

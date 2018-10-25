@@ -1,0 +1,17 @@
+{
+  "sourceMaps": true,
+  "presets": [
+    "env",
+    "react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    ["module-resolver", {
+      "root": ["./src"]
+    }],
+    ["import", {
+      "libraryName": "antd",
+      "libraryDirectory": "es"
+    }]
+  ]
+}
