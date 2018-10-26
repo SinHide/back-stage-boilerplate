@@ -4,6 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
 
+const localeMessages = require('i18n/locale.json')
+const buildConfig = require('./buildConfig');
+const BUILD_DOMAIN = process.env.BUILD_DOMAIN || 'localhost';
+const config = buildConfig[BUILD_DOMAIN]
+
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
 
@@ -77,6 +82,8 @@ function getClientEnvironment(publicUrl) {
         // This should only be used as an escape hatch. Normally you would put
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
+        BUILD_CONFIG: config,
+        BUILD_LOCALE_MESSAGES: localeMessages,
       }
     );
   // Stringify all values so we can feed into Webpack DefinePlugin
@@ -84,7 +91,7 @@ function getClientEnvironment(publicUrl) {
     'process.env': Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);
       return env;
-    }, {}),
+    }, {})
   };
 
   return { raw, stringified };
