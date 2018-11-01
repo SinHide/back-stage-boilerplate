@@ -4,10 +4,10 @@ const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
 
-const localeMessages = require('i18n/locale.json')
+const localeMessages = require('../src/i18n/locale.json');
 const buildConfig = require('./buildConfig');
 const BUILD_DOMAIN = process.env.BUILD_DOMAIN || 'localhost';
-const config = buildConfig[BUILD_DOMAIN]
+const config = buildConfig[BUILD_DOMAIN];
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];

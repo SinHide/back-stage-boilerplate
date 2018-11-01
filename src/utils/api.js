@@ -2,16 +2,16 @@ import axios from 'axios'
 
 const defaultHeaders = {
   Accept: 'application/json',
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
 }
 
 const instance = axios.create({
   timeout: 5000,
   headers: defaultHeaders,
-  withCredentials: true
+  withCredentials: true,
 })
 
-const returnJson = (response) => response.data
+const returnJson = response => response.data
 
 const standardResponse = (response) => {
   if (response.status < 400) {
@@ -21,8 +21,8 @@ const standardResponse = (response) => {
 }
 
 const api = () => {
-  let opt = { 
-    instance 
+  let opt = {
+    instance
   }
 
   return {

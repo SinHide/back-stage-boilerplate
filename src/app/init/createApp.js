@@ -7,3 +7,5 @@ const createApp = (store, history) => (
     <Router history={history} />
   </Provider>
 )
+
+export default createApp

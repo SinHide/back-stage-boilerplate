@@ -91,11 +91,11 @@ class AclRouter extends Component {
       <Route 
         key={path}
         {...omitRouteRenderProperties(route)}
-        render={(props) => {
+        render={(props) => (
           <AuthorizedLayout {...props}>
             <RouteComponent {...props} />
           </AuthorizedLayout>
-        }}
+        )}
       />
     )
   }
@@ -119,11 +119,11 @@ class AclRouter extends Component {
       <Route 
         key={path}
         {...omitRouteRenderProperties(route)}
-        render={(props) => {
+        render={(props) => (
           <NormalLayout {...props}>
             <RouteComponent {...props} />
           </NormalLayout>
-        }}
+        )}
       />
     )
   }
@@ -135,9 +135,9 @@ class AclRouter extends Component {
 
     return (
       <Route 
-        render={(props) => {
+        render={(props) => (
           <NotFound {...props} />
-        }}
+        )}
       />
     )
   }

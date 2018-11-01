@@ -26,8 +26,13 @@ const createAppStore = (history, preloadedState = {}) => {
   const store = createStore(
     connectRouter(history)(combineReducers(reducers)),
     preloadedState,
-    composeEnhancers()
+    composeEnhancers(applyMiddleware(...middlewares)),
   )
+
+  return {
+    store,
+    history,
+  }
 }
 
 export default createAppStore

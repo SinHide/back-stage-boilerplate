@@ -1,4 +1,4 @@
-import DemoComponent from 'view/notFound'
+import DemoComponent from 'views/notFound'
 
 const authorizedRoutes = [
   {
@@ -15,7 +15,7 @@ const normalRoutes = [
   {
     path: '/login',
     exact: true,
-    component: DemoComponent
+    component: DemoComponent,
   },
 ]
 

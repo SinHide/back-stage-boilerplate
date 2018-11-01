@@ -1,4 +1,4 @@
-import Cookie from 'js-cookie'
+// import Cookie from 'js-cookie'
 import api from 'utils/api'
 import createAsyncAction from 'utils/createAsyncAction'
 

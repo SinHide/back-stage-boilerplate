@@ -18,12 +18,12 @@ const loginError = (state, action) => ({
   loginErrorMsg: action.payload.response.data.error,
 })
 
-const resetLoginErrorMsg = (state) => ({
+const resetLoginErrorMsg = state => ({
   ...state,
   loginErrorMsg: '',
 })
 
-const logout = (state) => ({
+const logout = state => ({
   ...state,
   isLogin: false,
   user: {},

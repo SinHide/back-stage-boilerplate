@@ -1,5 +1,5 @@
 import app from '../reducer'
 
-export {
+export default {
   app,
 }
