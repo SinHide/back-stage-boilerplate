@@ -11,7 +11,7 @@ const createAsyncAction = (name, callback, meta = {}) => {
 
     try {
       return callback()
-        .then((value) => {
+        .then(value => {
           const action = {
             meta,
             type: `${name}_SUCCESS`,
@@ -21,7 +21,7 @@ const createAsyncAction = (name, callback, meta = {}) => {
           dispatch(action)
           return action          
         })
-        .catch((err) => {
+        .catch(err => {
           const action = {
             meta,
             type: `${name}_ERROR`,

@@ -57,7 +57,7 @@ class AclRouter extends Component {
   renderAuthorizedRoute = (route) => {
     const {
       authorizedLayout: AuthorizedLayout,
-      authorities
+      authorities,
     } = this.props
     const {
       path,
@@ -73,7 +73,7 @@ class AclRouter extends Component {
           <Route 
             key={path}
             {...omitRouteRenderProperties(route)}
-            render={(props) => (
+            render={props => (
               <AuthorizedLayout {...props}>
                 <Unauthorized {...props} />
               </AuthorizedLayout>
@@ -91,7 +91,7 @@ class AclRouter extends Component {
       <Route 
         key={path}
         {...omitRouteRenderProperties(route)}
-        render={(props) => (
+        render={props => (
           <AuthorizedLayout {...props}>
             <RouteComponent {...props} />
           </AuthorizedLayout>
@@ -102,12 +102,12 @@ class AclRouter extends Component {
 
   renderUnauthorizedRoute = (route) => {
     const {
-      normalLayout: NormalLayout
+      normalLayout: NormalLayout,
     } = this.props
     const {
       path,
       redirect,
-      component: RouteComponent
+      component: RouteComponent,
     } = route
 
     // check if current route is a redirect route (doesn't have component but redirect path)
@@ -119,7 +119,7 @@ class AclRouter extends Component {
       <Route 
         key={path}
         {...omitRouteRenderProperties(route)}
-        render={(props) => (
+        render={props => (
           <NormalLayout {...props}>
             <RouteComponent {...props} />
           </NormalLayout>
@@ -135,7 +135,7 @@ class AclRouter extends Component {
 
     return (
       <Route 
-        render={(props) => (
+        render={props => (
           <NotFound {...props} />
         )}
       />
@@ -145,22 +145,22 @@ class AclRouter extends Component {
   render () {
     const {
       normalRoutes,
-      authorizedRoutes
+      authorizedRoutes,
     } = this.props
 
     return (
       <Switch>
         {
-          map(normalRoutes, (route) => {
+          map(normalRoutes, (route) => (
             this.renderUnauthorizedRoute(route)
-          })
+          ))
         }
         {
-          map(authorizedRoutes, (route) => {
+          map(authorizedRoutes, (route) => (
             this.renderAuthorizedRoute(route)
-          })
+          ))
         }
-        { this.renderNotFoundRoute() }
+        {this.renderNotFoundRoute()}
       </Switch>
     )
   }

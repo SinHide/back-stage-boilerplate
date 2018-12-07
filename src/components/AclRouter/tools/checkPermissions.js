@@ -23,7 +23,7 @@ const checkPermissions = (authorities, permissions) => {
   }
 
   if (isFunction(authorities)) {
-    authorities(permissions)
+    return authorities(permissions)
   }
 
   throw new Error('[Acl-Router]: Unsupport type of authorities')
