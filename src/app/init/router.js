@@ -7,6 +7,7 @@ import BasicLayout from 'layouts/BasicLayout'
 import NormalLayout from 'layouts/NormalLayout'
 import NotFound from 'views/notFound'
 import { authorizedRoutes, normalRoutes } from '../config/routes'
+import ConnectedIntlProvider from 'utils/connectedIntlProvider'
 
 const propTypes = {
   history: PropTypes.object.isRequired,
@@ -15,14 +16,16 @@ const propTypes = {
 
 const Router = ({ history, user }) => (
   <ConnectedRouter history={history}>
-    <AclRouter
-      authorities={user.authorities}
-      authorizedRoute={authorizedRoutes}
-      authorizedLayout={BasicLayout}
-      normalRoutes={normalRoutes}
-      normalLayout={NormalLayout}
-      notFound={NotFound}
-    />
+    <ConnectedIntlProvider>
+      <AclRouter
+        authorities={user.authorities}
+        authorizedRoute={authorizedRoutes}
+        authorizedLayout={BasicLayout}
+        normalRoutes={normalRoutes}
+        normalLayout={NormalLayout}
+        notFound={NotFound}
+      />
+    </ConnectedIntlProvider>
   </ConnectedRouter>
 )
 

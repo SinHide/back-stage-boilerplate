@@ -1,5 +1,5 @@
 {
-  "en-us": {
+  "en_US": {
     "appName": "React App Pro",
     "siderMenu_dashboard": "Dashboard",
     "siderMenu_analysis": "Analysis",
@@ -32,7 +32,7 @@
     "outletDetail_notificationTitle": "Notification Title",
     "outletDetail_notificationContent": "Notification will dismiss after {seconds}s."
   },
-  "zh-cn": {
+  "zh_CN": {
     "appName": "React 中后台应用",
     "siderMenu_dashboard": "仪表盘",
     "siderMenu_analysis": "分析页",
@@ -48,7 +48,7 @@
     "pageTitle_outletDetail": "门店详情",
     "basicLayout_profile": "个人中心",
     "basicLayout_setting": "设置",
-    "basicLayout_logout": "退出登陆",
+    "basicLayout_logout": "退出登录",
     "basicLayout_readall_notice": "你已阅读所有消息!",
     "notFound_404": "页面不存在",
     "unauthorized_403": "无权限查看",
@@ -56,7 +56,7 @@
     "login_appDesc": "企业级管理系统 React 应用模版",
     "login_usernameInput_placeholder": "请输入用户名",
     "login_passwordInput_placeholder": "请输入密码",
-    "login_login_btn": "登陆",
+    "login_login_btn": "登录",
     "outletDetail_description": "位置: ",
     "outletDetail_hours": "营业时间: ",
     "outletDetail_phone": "联系电话: ",

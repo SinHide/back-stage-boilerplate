@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
+import './NormalLayout.scss'
 
 class NormalLayout extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     return (
-      <div>NormalLayout</div>
+      <div className='normalLayout'>
+        {this.props.children}
+      </div>
     )
   }
 }

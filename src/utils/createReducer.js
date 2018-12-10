@@ -14,7 +14,7 @@ const createReducer = (defaultState, handlers) => {
       const handler = get(handlers, action.type)
 
       if (typeof handler === 'function') {
-        handler(state, action)
+        return handler(state, action)
       }
     }
 

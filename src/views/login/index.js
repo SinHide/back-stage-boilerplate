@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import classnames from 'classnames'
+import classnames from 'classnames'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import isEmpty from 'lodash/isEmpty'
+import { injectIntl } from 'react-intl'
+import isEmpty from 'lodash/isEmpty'
 import { Input, Icon, Button } from 'antd'
 import appAction from 'app/action'
+import localeAction from 'i18n/action'
 import logo from 'assets/logo.svg'
 import './index.scss'
 
@@ -14,7 +16,9 @@ const propTypes = {
   isLogin: PropTypes.bool.isRequired,
   errorMsg: PropTypes.string.isRequired,
   loginUser: PropTypes.func.isRequired,
+  localeUpdateLang: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
 }
 
 const defaultProps = {
@@ -36,7 +40,7 @@ class Login extends Component {
   }
 
   renderLoginPanel = () => {
-    const { prefixCls } = this.props
+    const { prefixCls, intl } = this.props
     const { username, password } = this.state
 
     return (
@@ -44,16 +48,18 @@ class Login extends Component {
         <div className={`${prefixCls}-appInfo`}>
           <img className={`${prefixCls}-appLogo`} src={logo} alt="logo" />
           <span className={`${prefixCls}-appName`}>
-            1111
+            {intl.formatMessage({ id: 'appName' })}
           </span>
         </div>
         <div className={`${prefixCls}-appDesc`}>
-          44444444444
+          {intl.formatMessage({ id: 'login_appDesc' })}
         </div>
         <Input
           className={`${prefixCls}-loginInput`}
           style={{ height: 40, marginBottom: 24 }}
-          placeholder='3333'
+          placeholder={
+            intl.formatMessage({ id: 'login_usernameInput_placeholder' })
+          }
           type="text"
           prefix={<Icon type="user" style={{ color: 'rgba(0, 0, 0, .25)' }} />}
           value={username}
@@ -62,7 +68,9 @@ class Login extends Component {
         />
         <Input
           className={`${prefixCls}-loginInput`}
-          placeholder='6666'
+          placeholder={
+            intl.formatMessage({ id: 'login_passwordInput_placeholder' })
+          }
           type="password"
           prefix={<Icon type="lock" style={{ color: 'rgba(0, 0, 0, .25)' }} />}
           value={password}
@@ -74,7 +82,7 @@ class Login extends Component {
           type="primary"
           onClick={this.handleLogin}
         >
-          2222
+          {intl.formatMessage({ id: 'login_login_btn' })}
         </Button>
         <div>
           {this.renderErrorMsg()}
@@ -83,12 +91,53 @@ class Login extends Component {
     )
   }
 
+  renderIntlSwitch = () => {
+    const { prefixCls, intl, localeUpdateLang } = this.props
+
+    return (
+      <div className={`${prefixCls}-intlSwitch`}>
+        <span
+          className={classnames({
+            [`${prefixCls}-intlItem`]: true,
+            [`${prefixCls}-intlItem-active`]: intl.locale === 'en',
+          })}
+          onClick={() => localeUpdateLang('en')}
+          role="presentation"
+        >
+          English
+        </span>
+        <span className={`${prefixCls}-intlSwitchSeparator`}>
+          |
+        </span>
+        <span
+          className={classnames({
+            [`${prefixCls}-intlItem`]: true,
+            [`${prefixCls}-intlItem-active`]: intl.locale === 'zh',
+          })}
+          onClick={() => localeUpdateLang('zh')}
+          role="presentation"
+        >
+          中文
+        </span>
+      </div>
+    )
+  }
+
+  renderErrorMsg = () => {
+
+  }
+
+  onInputChange = () => {
+    
+  }
+
   render () {
     const { prefixCls } = this.props
     
     return (
       <div className={prefixCls}>
         {this.renderLoginPanel()}
+        {this.renderIntlSwitch()}
       </div>
     )
   }
@@ -101,6 +150,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   loginUser: appAction.loginUser,
+  localeUpdateLang: localeAction.localeUpdateLang,
 }
 
 Login.propTypes = propTypes
@@ -109,4 +159,4 @@ Login.defaultProps = defaultProps
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRouter(Login))
+)(withRouter(injectIntl(Login)))
