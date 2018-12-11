@@ -32,11 +32,28 @@ class Login extends Component {
   }
 
   componentDidMount () {
-
+    const { isLogin, history } = this.props
+    if (isLogin) {
+      history.push('/')
+    }
   }
 
   componentDidUpdate () {
+    const { isLogin, history } = this.props
+    if (isLogin) {
+      history.push('/')
+    }
+  }
 
+  render () {
+    const { prefixCls } = this.props
+    
+    return (
+      <div className={prefixCls}>
+        {this.renderLoginPanel()}
+        {this.renderIntlSwitch()}
+      </div>
+    )
   }
 
   renderLoginPanel = () => {
@@ -124,22 +141,28 @@ class Login extends Component {
   }
 
   renderErrorMsg = () => {
+    const { errorMsg, prefixCls } = this.props
+    const show = !isEmpty(errorMsg)
 
+    if (show) {
+      return (
+        <div className={`${prefixCls}-errorMsg`}>
+          {errorMsg}
+        </div>
+      )
+    }
+    return null
   }
 
-  onInputChange = () => {
-    
+  handleLogin = () => {
+    const { loginUser } = this.props
+    const { username, password } = this.state
+
+    loginUser(username, password)
   }
 
-  render () {
-    const { prefixCls } = this.props
-    
-    return (
-      <div className={prefixCls}>
-        {this.renderLoginPanel()}
-        {this.renderIntlSwitch()}
-      </div>
-    )
+  onInputChange = (e, key) => {
+    this.setState({ [key]: e.target.value })
   }
 }
 

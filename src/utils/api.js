@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { buildConfig } from 'app/config/buildConfig'
 
 const defaultHeaders = {
   Accept: 'application/json',
@@ -6,6 +7,7 @@ const defaultHeaders = {
 }
 
 const instance = axios.create({
+  baseURL: buildConfig.apiDomain,
   timeout: 5000,
   headers: defaultHeaders,
   withCredentials: true,
