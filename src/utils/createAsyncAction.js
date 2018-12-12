@@ -3,7 +3,7 @@ const createAsyncAction = (name, callback, meta = {}) => {
     throw new Error('[createAsyncAction] callback should be a function')
   }
 
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       meta,
       type: `${name}_REQUEST`,

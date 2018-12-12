@@ -2,25 +2,12 @@ import Cookie from 'js-cookie'
 import api from 'utils/api'
 import createAsyncAction from 'utils/createAsyncAction'
 
-const login = (username, password) => (
-  createAsyncAction('APP_LOGIN', () => (
-    api.post('/login', {
-      username,
-      password,
+const loginUser = (username, password) => {
+  const action = createAsyncAction('APP_LOGIN', () => (
+    api.post('/login', { 
+      username, password, 
     })
   ))
-)
-
-const logout = () => {
-  Cookie.remove('user')
-
-  return ({
-    type: 'APP_LOGOUT',
-  })
-}
-
-const loginUser = (username, password) => {
-  const action = login(username, password)
 
   return dispatch => (
     action(dispatch)
@@ -37,6 +24,14 @@ const loginUser = (username, password) => {
   )
 }
 
+const logout = () => {
+  Cookie.remove('user')
+
+  return ({
+    type: 'APP_LOGOUT',
+  })
+}
+
 const resetLoginErrorMsg = () => ({
   type: 'APP_RESET_LOGIN_ERROR_MSG'
 })
@@ -47,14 +42,25 @@ const getNotices = () => (
   ))
 )
 
-const deleteNotices = () => {
+const deleteNotices = (id) => {
+  const action = createAsyncAction('APP_DELETE_NOTICE', () => (
+    api.delete(`/notices/${id}`)
+  ))
 
+  return dispatch => {
+    action(dispatch)
+      .then(callbackAction => {
+        if (callbackAction.type === 'APP_DELETE_NOTICE_SUCCESS') {
+          return getNotices()(dispatch)
+        }
+        return null
+      })
+  }
 }
 
 export default {
-  login,
-  logout,
   loginUser,
+  logout,
   resetLoginErrorMsg,
   getNotices,
   deleteNotices,

@@ -1,4 +1,5 @@
 import Login from 'views/login'
+import Agents from 'views/agents'
 import DemoComponent from 'views/notFound'
 
 const authorizedRoutes = [
@@ -9,6 +10,15 @@ const authorizedRoutes = [
     redirect: '/login',
     component: DemoComponent,
     pageTitle: '',
+  },
+  {
+    path: '/agents',
+    exact: true,
+    permissions: ['admin', 'user'],
+    component: Agents,
+    unauthorized: DemoComponent,
+    pageTitle: 'pageTitle_agents',
+    breadcrumb: ['/agents'],
   },
 ]
 
