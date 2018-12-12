@@ -2,8 +2,8 @@ import createReducer from 'utils/createReducer'
 import locales from 'i18n/locale.json'
 
 const defaultState = () => ({
-  lang: 'zh',
-  messages: tansformLocaleLang('zh'),
+  lang: 'en',
+  messages: tansformLocaleLang('en'),
 })
 
 const tansformLocaleLang = (lang) => {

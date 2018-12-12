@@ -24,6 +24,11 @@ const authorizedRoutes = [
 
 const normalRoutes = [
   {
+    path: '/',
+    exact: true,
+    redirect: '/agents',
+  },
+  {
     path: '/login',
     exact: true,
     component: Login,

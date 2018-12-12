@@ -38,7 +38,7 @@ const resetLoginErrorMsg = () => ({
 
 const getNotices = () => (
   createAsyncAction('APP_GET_NOTICES', () => (
-    api.get('/notice')
+    api.get('/notices')
   ))
 )
 

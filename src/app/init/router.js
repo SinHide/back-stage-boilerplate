@@ -19,7 +19,7 @@ const Router = ({ history, user }) => (
     <ConnectedIntlProvider>
       <AclRouter
         authorities={user.authorities}
-        authorizedRoute={authorizedRoutes}
+        authorizedRoutes={authorizedRoutes}
         authorizedLayout={BasicLayout}
         normalRoutes={normalRoutes}
         normalLayout={NormalLayout}
