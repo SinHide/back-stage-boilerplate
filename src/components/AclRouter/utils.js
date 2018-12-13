@@ -3,6 +3,7 @@ import isArray from 'lodash/isArray'
 import isString from 'lodash/isString'
 import isFunction from 'lodash/isFunction'
 import indexOf from 'lodash/indexOf'
+import omit from 'lodash/omit'
 
 const checkPermissions = (authorities, permissions) => {
   if (isEmpty(permissions)) {
@@ -29,4 +30,13 @@ const checkPermissions = (authorities, permissions) => {
   throw new Error('[Acl-Router]: Unsupport type of authorities')
 }
 
-export default checkPermissions
+const OMIT_ROUTE_RENDER_PROPERTIES = ['render', 'component']
+
+const omitRouteRenderProperties = (route) => (
+  omit(route, OMIT_ROUTE_RENDER_PROPERTIES)
+)
+
+export {
+  checkPermissions,
+  omitRouteRenderProperties,
+}

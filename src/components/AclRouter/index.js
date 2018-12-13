@@ -1,3 +1,1 @@
-import AclRouter from './AclRouter'
-
-export default AclRouter
+export { default } from './AclRouter'
