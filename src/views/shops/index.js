@@ -7,12 +7,12 @@ import React, { Component } from 'react'
 // import action from './action'
 import './index.scss'
 
-class Outlets extends Component {
+class Shops extends Component {
   render () {
     return (
-      <div>outlets</div>
+      <div>shops</div>
     )
   }
 }
 
-export default Outlets
+export default Shops

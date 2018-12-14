@@ -1,5 +1,5 @@
 import Login from 'views/login'
-import Agents from 'views/agents'
+import Shops from 'views/shops'
 import DemoComponent from 'views/notFound'
 
 const authorizedRoutes = [
@@ -12,13 +12,13 @@ const authorizedRoutes = [
     pageTitle: '',
   },
   {
-    path: '/agents',
+    path: '/shops',
     exact: true,
     permissions: ['admin', 'user'],
-    component: Agents,
+    component: Shops,
     unauthorized: DemoComponent,
-    pageTitle: 'pageTitle_agents',
-    breadcrumb: ['/agents'],
+    pageTitle: 'pageTitle_shops',
+    breadcrumb: ['/shops'],
   },
 ]
 
@@ -26,7 +26,7 @@ const normalRoutes = [
   {
     path: '/',
     exact: true,
-    redirect: '/agents',
+    redirect: '/shops',
   },
   {
     path: '/login',

@@ -18,9 +18,9 @@ const menuData = [{
     path: 'workplace',
   }],
 }, {
-  name: 'siderMenu_agents',
+  name: 'siderMenu_shops',
   icon: 'shop',
-  path: 'agents',
+  path: 'shops',
 }, {
   name: 'siderMenu_exception',
   icon: 'table',

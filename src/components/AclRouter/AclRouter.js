@@ -7,43 +7,44 @@ import { checkPermissions, omitRouteRenderProperties } from './utils'
 import DefaultLayout from './defaults/defaultLayout'
 import DefaultNotFound from './defaults/defaultNotFound'
 
-const propTypes = {
-  authorities: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-    PropTypes.func
-  ]),
-  normalRoutes: PropTypes.arrayOf(
-    PropTypes.shape({
-      path: PropTypes.string,
-      redirect: PropTypes.string,
-      component: PropTypes.func
-    })
-  ),
-  normalLayout: PropTypes.func,
-  authorizedRoutes: PropTypes.arrayOf(
-    PropTypes.shape({
-      path: PropTypes.string,
-      permissions: PropTypes.arrayOf(PropTypes.string),
-      component: PropTypes.func,
-      redirect: PropTypes.string,
-      unauthrized: PropTypes.func
-    })
-  ),
-  authorizedLayout: PropTypes.func,
-  notFound: PropTypes.func,
-}
-
-const defaultProps = {
-  authorities: '',
-  normalRoutes: [],
-  normalLayout: DefaultLayout,
-  authorizedRoutes: [],
-  authorizedLayout: DefaultLayout,
-  notFound: DefaultNotFound,
-}
-
 class AclRouter extends Component {
+
+  static propTypes = {
+    authorities: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.func,
+    ]),
+    normalRoutes: PropTypes.arrayOf(
+      PropTypes.shape({
+        path: PropTypes.string,
+        redirect: PropTypes.string,
+        component: PropTypes.func,
+      })
+    ),
+    normalLayout: PropTypes.func,
+    authorizedRoutes: PropTypes.arrayOf(
+      PropTypes.shape({
+        path: PropTypes.string,
+        permissions: PropTypes.arrayOf(PropTypes.string),
+        component: PropTypes.func,
+        redirect: PropTypes.string,
+        unauthrized: PropTypes.func,
+      })
+    ),
+    authorizedLayout: PropTypes.func,
+    notFound: PropTypes.func,
+  }
+
+  static defaultProps = {
+    authorities: '',
+    normalRoutes: [],
+    normalLayout: DefaultLayout,
+    authorizedRoutes: [],
+    authorizedLayout: DefaultLayout,
+    notFound: DefaultNotFound,
+  }
+
   renderRedirectRoute = (route) => (
     <Route
       key={route.path}
@@ -164,8 +165,5 @@ class AclRouter extends Component {
     )
   }
 }
-
-AclRouter.propTypes = propTypes
-AclRouter.defaultProps = defaultProps
 
 export default AclRouter

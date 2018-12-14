@@ -58,10 +58,21 @@ const deleteNotices = (id) => {
   }
 }
 
+const updateNotification = notification => ({
+  type: 'APP_UPDATE_NOTIFICATION',
+  payload: notification,
+})
+
+const resetNotification = () => ({
+  type: 'APP_RESET_NOTIFICATION',
+})
+
 export default {
   loginUser,
   logout,
   resetLoginErrorMsg,
   getNotices,
   deleteNotices,
+  updateNotification,
+  resetNotification,
 }

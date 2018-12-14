@@ -11,21 +11,22 @@ import localeAction from 'i18n/action'
 import logo from 'assets/logo.svg'
 import './index.scss'
 
-const propTypes = {
-  prefixCls: PropTypes.string,
-  isLogin: PropTypes.bool.isRequired,
-  errorMsg: PropTypes.string.isRequired,
-  loginUser: PropTypes.func.isRequired,
-  localeUpdateLang: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired,
-}
-
-const defaultProps = {
-  prefixCls: 'view-login',
-}
-
 class Login extends Component {
+
+  static propTypes = {
+    prefixCls: PropTypes.string,
+    history: PropTypes.object.isRequired,
+    intl: PropTypes.object.isRequired,
+    isLogin: PropTypes.bool.isRequired,
+    errorMsg: PropTypes.string.isRequired,
+    loginUser: PropTypes.func.isRequired,
+    localeUpdateLang: PropTypes.func.isRequired,
+  }
+
+  static defaultProps = {
+    prefixCls: 'view-login',
+  }
+
   state = {
     username: '',
     password: '',
@@ -45,15 +46,29 @@ class Login extends Component {
     }
   }
 
-  render () {
-    const { prefixCls } = this.props
-    
-    return (
-      <div className={prefixCls}>
-        {this.renderLoginPanel()}
-        {this.renderIntlSwitch()}
-      </div>
-    )
+  renderErrorMsg = () => {
+    const { errorMsg, prefixCls } = this.props
+    const show = !isEmpty(errorMsg)
+
+    if (show) {
+      return (
+        <div className={`${prefixCls}-errorMsg`}>
+          {errorMsg}
+        </div>
+      )
+    }
+    return null
+  }
+
+  handleLogin = () => {
+    const { loginUser } = this.props
+    const { username, password } = this.state
+
+    loginUser(username, password)
+  }
+
+  onInputChange = (e, key) => {
+    this.setState({ [key]: e.target.value })
   }
 
   renderLoginPanel = () => {
@@ -140,29 +155,15 @@ class Login extends Component {
     )
   }
 
-  renderErrorMsg = () => {
-    const { errorMsg, prefixCls } = this.props
-    const show = !isEmpty(errorMsg)
-
-    if (show) {
-      return (
-        <div className={`${prefixCls}-errorMsg`}>
-          {errorMsg}
-        </div>
-      )
-    }
-    return null
-  }
-
-  handleLogin = () => {
-    const { loginUser } = this.props
-    const { username, password } = this.state
-
-    loginUser(username, password)
-  }
-
-  onInputChange = (e, key) => {
-    this.setState({ [key]: e.target.value })
+  render () {
+    const { prefixCls } = this.props
+    
+    return (
+      <div className={prefixCls}>
+        {this.renderLoginPanel()}
+        {this.renderIntlSwitch()}
+      </div>
+    )
   }
 }
 
@@ -175,9 +176,6 @@ const mapDispatchToProps = {
   loginUser: appAction.loginUser,
   localeUpdateLang: localeAction.localeUpdateLang,
 }
-
-Login.propTypes = propTypes
-Login.defaultProps = defaultProps
 
 export default connect(
   mapStateToProps,
