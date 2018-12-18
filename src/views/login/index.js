@@ -167,17 +167,13 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isLogin: state.app.isLogin,
-  errorMsg: state.app.loginErrorMsg,
-})
-
-const mapDispatchToProps = {
-  loginUser: appAction.loginUser,
-  localeUpdateLang: localeAction.localeUpdateLang,
-}
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  state => ({
+    isLogin: state.app.isLogin,
+    errorMsg: state.app.loginErrorMsg,
+  }),
+  {
+    loginUser: appAction.loginUser,
+    localeUpdateLang: localeAction.localeUpdateLang,
+  },
 )(withRouter(injectIntl(Login)))

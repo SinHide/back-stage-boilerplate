@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
 import { Link } from 'react-router-dom'
 import { matchRoutes } from 'react-router-config'
 import Sider from 'components/Sider'
+import loginChecker from 'hocs/loginChecker'
 import map from 'lodash/map'
 import get from 'lodash/get'
 import head from 'lodash/head'
 import menuData from 'app/config/menu'
 import { combineRoutes } from 'app/config/routes'
+import logo from 'assets/logo.svg'
+import './BasicLayout.scss'
 
 class BasicLayout extends Component {
 
@@ -51,32 +55,44 @@ class BasicLayout extends Component {
   )
 
   render () {
+    const {
+      prefixCls,
+      className,
+      intl,
+      isLogin,
+      location,
+      children,
+    } = this.props
+
+    const classes = classnames({
+      [prefixCls]: true,
+      [className]: true,
+    })
+
     return (
-      <div>
-        <Sider />
+      <div className={classes}>
+        <Sider
+          appName={intl.formatMessage({ id: 'appName' })}
+          appLogo={logo}
+          menuData={this.menuData}
+          pathname={location.pathname}
+        />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  const pathname = get(state, 'router.location.pathname', '')
-  const { route } = head(matchRoutes(combineRoutes, pathname)) // [{match: {}, route: {}}]
-  
-  return {
-    isLogin: state.app.isLogin,
-    user: state.app.user,
-    route,
-    notices: state.app.notices,
-    notification: state.app.notification,
-  }
-}
-
-const mapDispatchToProps = {
-
-}
-
 export default connect(
-  mapStateToProps, 
-  mapDispatchToProps,
-)(injectIntl(BasicLayout))
+  state => {
+    const pathname = get(state, 'router.location.pathname', '')
+    const { route } = head(matchRoutes(combineRoutes, pathname)) // [{match: {}, route: {}}]
+    
+    return {
+      isLogin: state.app.isLogin,
+      user: state.app.user,
+      route,
+      notices: state.app.notices,
+      notification: state.app.notification,
+    }
+  },
+)(injectIntl(loginChecker(BasicLayout)))

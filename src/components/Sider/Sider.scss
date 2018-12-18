@@ -1,4 +1,4 @@
-.baseLayout-sider {
+.basicLayout-sider {
   z-index: 1;
   display: flex;
   display: -webkit-box;
@@ -24,8 +24,9 @@
     background: #001529;
   }
   &-logo {
-    height: 48px;
-    width: 48px;
+    height: 32px;
+    width: 32px;
+    margin-right: 12px;
   }
   &-appName {
     color: #ffffff;

@@ -5,6 +5,7 @@ import memoize from 'memoize-one'
 import map from 'lodash/map'
 import { Menu, Icon } from 'antd'
 import { formatMenuPath, getFlatMenuKeys, getMenuMatchKeys, pathUrlToList } from './utils'
+import './Sider.scss'
 
 const { SubMenu } = Menu
 
@@ -30,7 +31,7 @@ class Sider extends Component {
   }
 
   static defaultProps = {
-    prefixCls: 'baseLayout-sider',
+    prefixCls: 'basicLayout-sider',
     className: '',
     style: {},
     appName: '',
@@ -50,6 +51,7 @@ class Sider extends Component {
     ))
 
     const { menuData, pathname } = props
+    console.warn(this.wholePathMenuData(menuData))
 
     this.state = {
       openKeys: this.selectedKeys(pathname, this.wholePathMenuData(menuData))
@@ -79,7 +81,7 @@ class Sider extends Component {
       }
 
       return (
-        <Menu.Item>
+        <Menu.Item key={item.path}>
           <Link to={item.path} href={item.path}>
             {item.icon && <Icon type={item.icon} />}
             <span>{item.name}</span>

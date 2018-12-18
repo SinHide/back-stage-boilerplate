@@ -3,7 +3,7 @@ import map from 'lodash/map'
 import reduce from 'lodash/reduce'
 import filter from 'lodash/filter'
 
-const formatMenuPath = (data, parentPath = '/') => {
+const formatMenuPath = (data, parentPath = '/') => (
   map(data, item => {
     const result = {
       ...item,
@@ -16,7 +16,7 @@ const formatMenuPath = (data, parentPath = '/') => {
 
     return result
   })
-}
+)
 
 const getFlatMenuKeys = menuData => (
   reduce(menuData, (keys, item) => {

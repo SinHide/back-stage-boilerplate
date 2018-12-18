@@ -45,7 +45,7 @@ class AclRouter extends Component {
     notFound: DefaultNotFound,
   }
 
-  renderRedirectRoute = (route) => (
+  renderRedirectRoute = route => (
     <Route
       key={route.path}
       {...omitRouteRenderProperties(route)}
@@ -54,7 +54,7 @@ class AclRouter extends Component {
   )
 
   // props pass to Layout & Component are history, location, match
-  renderAuthorizedRoute = (route) => {
+  renderAuthorizedRoute = route => {
     const {
       authorizedLayout: AuthorizedLayout,
       authorities,
@@ -100,7 +100,7 @@ class AclRouter extends Component {
     )
   }
 
-  renderUnauthorizedRoute = (route) => {
+  renderUnauthorizedRoute = route => {
     const {
       normalLayout: NormalLayout,
     } = this.props
@@ -151,12 +151,12 @@ class AclRouter extends Component {
     return (
       <Switch>
         {
-          map(normalRoutes, (route) => (
+          map(normalRoutes, route => (
             this.renderUnauthorizedRoute(route)
           ))
         }
         {
-          map(authorizedRoutes, (route) => (
+          map(authorizedRoutes, route => (
             this.renderAuthorizedRoute(route)
           ))
         }

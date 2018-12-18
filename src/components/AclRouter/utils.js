@@ -32,7 +32,7 @@ const checkPermissions = (authorities, permissions) => {
 
 const OMIT_ROUTE_RENDER_PROPERTIES = ['render', 'component']
 
-const omitRouteRenderProperties = (route) => (
+const omitRouteRenderProperties = route => (
   omit(route, OMIT_ROUTE_RENDER_PROPERTIES)
 )
 

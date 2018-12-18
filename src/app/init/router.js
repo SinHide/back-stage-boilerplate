@@ -29,10 +29,10 @@ const Router = ({ history, user }) => (
   </ConnectedRouter>
 )
 
-const mapStateToProps = (state) => ({
-  user: state.app.user,
-})
-
 Router.propTypes = propTypes
 
-export default connect(mapStateToProps)(Router)
+export default connect(
+  state => ({
+    user: state.app.user,
+  })
+)(Router)
