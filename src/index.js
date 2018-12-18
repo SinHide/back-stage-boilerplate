@@ -1,10 +1,11 @@
 import ReactDOM from 'react-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
+import history from 'utils/history'
 import 'antd/dist/antd.css'
 import * as serviceWorker from './serviceWorker'
 import { createApp, createStore, initClient } from './app'
 
-const { store, history } = createStore(createBrowserHistory(), {})
+const store = createStore(history, {})
+
 const application = createApp(store, history)
 
 initClient(store.dispatch)

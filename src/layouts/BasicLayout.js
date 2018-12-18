@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { matchRoutes } from 'react-router-config'
 import Sider from 'components/Sider'
 import loginChecker from 'hocs/loginChecker'
@@ -77,12 +77,15 @@ class BasicLayout extends Component {
           menuData={this.menuData}
           pathname={location.pathname}
         />
+        <div className={`${prefixCls}-mainContent`}>
+          {children}
+        </div>
       </div>
     )
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => {
     const pathname = get(state, 'router.location.pathname', '')
     const { route } = head(matchRoutes(combineRoutes, pathname)) // [{match: {}, route: {}}]
@@ -95,4 +98,4 @@ export default connect(
       notification: state.app.notification,
     }
   },
-)(injectIntl(loginChecker(BasicLayout)))
+)(injectIntl(loginChecker(BasicLayout))))

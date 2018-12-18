@@ -1,12 +1,11 @@
 import {
   createStore,
-  combineReducers,
   applyMiddleware,
   compose,
 } from 'redux'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 import reduxThunk from 'redux-thunk'
-import reducers from './reducers'
+import rootReducer from './reducers'
 
 const createAppStore = (history, preloadedState = {}) => {
   // enhancers
@@ -24,15 +23,14 @@ const createAppStore = (history, preloadedState = {}) => {
   ]
 
   const store = createStore(
-    connectRouter(history)(combineReducers(reducers)),
+    connectRouter(history)(rootReducer),
     preloadedState,
-    composeEnhancers(applyMiddleware(...middlewares)),
+    composeEnhancers(
+      applyMiddleware(...middlewares)
+    ),
   )
 
-  return {
-    store,
-    history,
-  }
+  return store
 }
 
 export default createAppStore

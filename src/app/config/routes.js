@@ -1,6 +1,6 @@
 import Login from 'views/login'
 import Shops from 'views/shops'
-import DemoComponent from 'views/notFound'
+import Unauthorized from 'views/unauthorized'
 
 const authorizedRoutes = [
   {
@@ -8,7 +8,7 @@ const authorizedRoutes = [
     exact: true,
     permissions: ['admin', 'user'],
     component: Shops,
-    unauthorized: DemoComponent,
+    unauthorized: Unauthorized,
     pageTitle: 'pageTitle_shops',
     breadcrumb: ['/shops'],
   },

@@ -167,7 +167,7 @@ class Login extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({
     isLogin: state.app.isLogin,
     errorMsg: state.app.loginErrorMsg,
@@ -176,4 +176,4 @@ export default connect(
     loginUser: appAction.loginUser,
     localeUpdateLang: localeAction.localeUpdateLang,
   },
-)(withRouter(injectIntl(Login)))
+)(injectIntl(Login)))

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
 
 const loginChecker = (WrappedComponent) => {
-  class LoginChecker extends Component {
+  return class LoginChecker extends Component {
 
     static propTypes = {
       isLogin: PropTypes.bool.isRequired,
@@ -26,8 +25,6 @@ const loginChecker = (WrappedComponent) => {
       return <WrappedComponent {...this.props} />
     }
   }
-
-  return withRouter(LoginChecker)
 }
 
 export default loginChecker
