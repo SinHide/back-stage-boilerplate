@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import history from 'utils/history'
+import history from 'router/history'
 import 'antd/dist/antd.css'
 import { createApp, createStore, initClient } from './app'
 import * as serviceWorker from './serviceWorker'
