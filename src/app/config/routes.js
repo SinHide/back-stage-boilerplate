@@ -12,6 +12,13 @@ const authorizedRoutes = [
     pageTitle: 'pageTitle_shops',
     breadcrumb: ['/shops'],
   },
+  {
+    path: '/exception/403',
+    exact: true,
+    permissions: ['nobody'],
+    component: Shops,
+    unauthorized: Unauthorized,
+  }
 ]
 
 const normalRoutes = [

@@ -29,7 +29,7 @@ class AclRouter extends Component {
         permissions: PropTypes.arrayOf(PropTypes.string),
         component: PropTypes.func,
         redirect: PropTypes.string,
-        unauthrized: PropTypes.func,
+        unauthorized: PropTypes.func,
       })
     ),
     authorizedLayout: PropTypes.func,
@@ -46,10 +46,10 @@ class AclRouter extends Component {
   }
 
   renderRedirectRoute = route => (
-    <Route
-      key={route.path}
-      {...omitRouteRenderProperties(route)}
-      render={() => <Redirect to={route.redirect} />}
+    <Redirect 
+      key={route.path} 
+      {...omitRouteRenderProperties(route)} 
+      to={route.redirect}
     />
   )
 
@@ -63,12 +63,12 @@ class AclRouter extends Component {
       path,
       permissions,
       component: RouteComponent,
-      unauthrized: Unauthorized,
+      unauthorized: Unauthorized,
     } = route
     const hasPermission = checkPermissions(authorities, permissions)
 
     if (!hasPermission) {
-      if (route.unauthrized) {
+      if (route.unauthorized) {
         return (
           <Route 
             key={path}
@@ -150,16 +150,12 @@ class AclRouter extends Component {
 
     return (
       <Switch>
-        {
-          map(normalRoutes, route => (
-            this.renderUnauthorizedRoute(route)
-          ))
-        }
-        {
-          map(authorizedRoutes, route => (
-            this.renderAuthorizedRoute(route)
-          ))
-        }
+        { map(normalRoutes, route => (
+          this.renderUnauthorizedRoute(route)
+        )) }
+        { map(authorizedRoutes, route => (
+          this.renderAuthorizedRoute(route)
+        )) }
         {this.renderNotFoundRoute()}
       </Switch>
     )

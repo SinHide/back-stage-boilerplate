@@ -51,7 +51,6 @@ class Sider extends Component {
     ))
 
     const { menuData, pathname } = props
-    console.warn(this.wholePathMenuData(menuData))
 
     this.state = {
       openKeys: this.selectedKeys(pathname, this.wholePathMenuData(menuData))

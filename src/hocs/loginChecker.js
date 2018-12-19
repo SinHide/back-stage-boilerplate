@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const loginChecker = (WrappedComponent) => {
+const loginChecker = WrappedComponent => {
   return class LoginChecker extends Component {
 
     static propTypes = {
