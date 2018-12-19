@@ -12,11 +12,17 @@ import ConnectedIntlProvider from 'utils/connectedIntlProvider'
 const propTypes = {
   history: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  locale: PropTypes.string.isRequired,
+  messages: PropTypes.object.isRequired,
 }
 
-const Router = ({ history, user }) => (
-  <ConnectedRouter history={history}>
-    <ConnectedIntlProvider>
+const Router = ({ history, user, locale, messages }) => (
+  <ConnectedIntlProvider>
+    <ConnectedRouter 
+      history={history} 
+      locale={locale}
+      messages={messages}
+    >
       <AclRouter
         authorities={user.authorities}
         authorizedRoutes={authorizedRoutes}
@@ -25,8 +31,8 @@ const Router = ({ history, user }) => (
         normalLayout={NormalLayout}
         notFound={NotFound}
       />
-    </ConnectedIntlProvider>
-  </ConnectedRouter>
+    </ConnectedRouter>
+  </ConnectedIntlProvider>
 )
 
 Router.propTypes = propTypes
@@ -34,5 +40,7 @@ Router.propTypes = propTypes
 export default connect(
   state => ({
     user: state.app.user,
+    locale: state.locales.lang,
+    messages: state.locales.messages,
   })
 )(Router)
